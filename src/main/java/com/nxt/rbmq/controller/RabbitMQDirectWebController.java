@@ -16,10 +16,10 @@ public class RabbitMQDirectWebController {
 	private AmqpTemplate amqpTemplate;
 
 	@PostMapping("/producer")
-	public String producer(@RequestBody String messageData) {
+	public String producer(@RequestBody MessageInput msgInput) {
 
-		amqpTemplate.convertAndSend(RabbitMQDirectConfig.DEFAULT_EXCHANGE_NAME,
-				RabbitMQDirectConfig.DEFAULT_ROUTING_KEY, messageData);
+		amqpTemplate.convertAndSend(RabbitMQDirectConfig.DEFAULT_EXCHANGE_NAME, msgInput.getRoutingKey(),
+				msgInput.getMessageData());
 
 		return "Message sent to the RabbitMQ Successfully";
 	}

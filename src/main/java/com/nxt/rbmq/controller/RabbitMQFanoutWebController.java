@@ -1,5 +1,6 @@
 package com.nxt.rbmq.controller;
 
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,8 +19,7 @@ public class RabbitMQFanoutWebController {
 	@PostMapping("/producer")
 	public String producer(@RequestBody MessageInput msgInput) {
 
-		amqpTemplate.convertAndSend(RabbitMQFanoutConfig.EXCHANGE_NAME, msgInput.getRoutingKey(),
-				msgInput.getMessageData());
+		amqpTemplate.convertAndSend(RabbitMQFanoutConfig.EXCHANGE_NAME, Strings.EMPTY, msgInput.getMessageData());
 
 		return "Message sent to the RabbitMQ Successfully";
 	}

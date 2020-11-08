@@ -12,9 +12,14 @@ import com.nxt.rbmq.config.RabbitMQDirectConfig;
 public class DirectExchangeConsumer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DirectExchangeConsumer.class);
 
-	@RabbitListener(queues = RabbitMQDirectConfig.DEFAULT_QUEUE_NAME)
-	public void onMessage(Message message) {
-		LOGGER.info("Consuming Message from Direct Exchange - Queue private:" + new String(message.getBody()));
+	@RabbitListener(queues = RabbitMQDirectConfig.QUEUE_PRIVATE)
+	public void receiveMessageFromPrivate(Message message) {
+		LOGGER.info("Consuming message from Direct Exchange - Queue private: " + new String(message.getBody()));
+	}
+	
+	@RabbitListener(queues = RabbitMQDirectConfig.QUEUE_PUBLIC)
+	public void receiveMessageFromPublic(Message message) {
+		LOGGER.info("Consuming message from Direct Exchange - Queue public: " + new String(message.getBody()));
 	}
 
 }

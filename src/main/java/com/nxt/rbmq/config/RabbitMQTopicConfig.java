@@ -11,23 +11,23 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQTopicConfig {
 
 	public static final String EXCHANGE_NAME = "topic-exchange";
-	public static final String QUEUE_MARKETING = "marketingQueue";
-	public static final String QUEUE_FINANCE = "financeQueue";
-	public static final String QUEUE_ALL = "allQueue";
+	public static final String QUEUE_MARKETING = "topic.marketingQueue";
+	public static final String QUEUE_FINANCE = "topic.financeQueue";
+	public static final String QUEUE_ALL = "topic.allQueue";
 
 	@Bean
 	Queue marketingQueue() {
-		return new Queue("marketingQueue", false);
+		return new Queue(QUEUE_MARKETING, false);
 	}
 
 	@Bean
 	Queue financeQueue() {
-		return new Queue("financeQueue", false);
+		return new Queue(QUEUE_FINANCE, false);
 	}
 
 	@Bean
 	Queue allQueue() {
-		return new Queue("allQueue", false);
+		return new Queue(QUEUE_ALL, false);
 	}
 
 	@Bean
