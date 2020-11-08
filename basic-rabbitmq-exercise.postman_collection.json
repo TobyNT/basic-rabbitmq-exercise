@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "3220fbe1-a943-45c4-be2b-ee2f15ab7091",
+		"name": "basic-rabbitmq-exercise",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Send message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"exchangeName\": \"fanout-exchange\",\r\n    \"routingKey\": \"\",\r\n    \"messageData\": \"Common message with routing key: <empty>\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/basic-rabbitmq-exercise/producer",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"basic-rabbitmq-exercise",
+						"producer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send message to Direct Exchange",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "message for direct exchange"
+				},
+				"url": {
+					"raw": "localhost:8080/basic-rabbitmq-exercise/direct/produce",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"basic-rabbitmq-exercise",
+						"direct",
+						"produce"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send message to Topic Exchange - Finance",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"exchangeName\": \"topic-exchange\",\r\n    \"routingKey\": \"queue.finance\",\r\n    \"messageData\": \"Message to topic-exchange with routing key: queue.finance\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/basic-rabbitmq-exercise/topic/producer",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"basic-rabbitmq-exercise",
+						"topic",
+						"producer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send message to Topic Exchange - All",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"exchangeName\": \"topic-exchange\",\r\n    \"routingKey\": \"queue.\",\r\n    \"messageData\": \"Message to topic-exchange with routing key: queue.*\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/basic-rabbitmq-exercise/topic/producer",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"basic-rabbitmq-exercise",
+						"topic",
+						"producer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send message to Fanout Exchange",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"exchangeName\": \"fanout-exchange\",\r\n    \"routingKey\": \"\",\r\n    \"messageData\": \"Message to fanout-exchange with routing key: <empty>\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/basic-rabbitmq-exercise/fanout/producer",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"basic-rabbitmq-exercise",
+						"fanout",
+						"producer"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
